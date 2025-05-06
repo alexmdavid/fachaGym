@@ -1,5 +1,5 @@
-# Etapa 1: build
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+# Etapa 1: compilación
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
 COPY *.csproj ./
@@ -9,11 +9,11 @@ COPY . ./
 RUN dotnet publish -c Release -o out
 
 # Etapa 2: runtime
-FROM mcr.microsoft.com/dotnet/aspnet:7.0
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 COPY --from=build /app/out .
 
-# Configura el puerto para Render
+# Render usa el puerto 10000
 ENV ASPNETCORE_URLS=http://+:10000
 EXPOSE 10000
 
