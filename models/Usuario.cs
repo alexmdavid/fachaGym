@@ -23,5 +23,7 @@ namespace fachaGym.Models
         public string Contraseña { get; set; }
 
         public DateTime FechaRegistro { get; set; }
+
+        public int duracionPlan;  //joa por ejemplo 1 dia; 1 mes, serian 30 dias; 3 meses, 90 dias y asi nojoda
     }
 }
