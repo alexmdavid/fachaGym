@@ -17,10 +17,18 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("PermitirTodo", builder =>
+        builder.AllowAnyOrigin()
+               .AllowAnyHeader()
+               .AllowAnyMethod());
+});
 
 
 var app = builder.Build();
 
+app.UseCors("PermitirTodo");
 
 if (app.Environment.IsDevelopment())
 {
