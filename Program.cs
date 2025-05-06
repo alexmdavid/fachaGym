@@ -25,6 +25,11 @@ builder.Services.AddCors(options =>
                .AllowAnyMethod());
 });
 
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.SetMinimumLevel(LogLevel.Debug);
+
+
 
 var app = builder.Build();
 

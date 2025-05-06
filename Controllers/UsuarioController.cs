@@ -35,9 +35,18 @@
             [HttpPost]
             public async Task<IActionResult> Crear(Usuario usuario)
             {
-                await _service.Crear(usuario);
-                return CreatedAtAction(nameof(GetById), new { id = usuario.Id }, usuario);
+                try
+                {
+                    await _service.Crear(usuario);
+                    return CreatedAtAction(nameof(GetById), new { id = usuario.Id }, usuario);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error al crear usuario: {ex.Message}");
+                    return StatusCode(500, $"Error interno: {ex.Message}");
+                }
             }
+
 
             [HttpPut("{id}")]
             public async Task<IActionResult> Actualizar(int id, Usuario usuario)
