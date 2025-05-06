@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace fachaGym.Models
 {
@@ -25,6 +26,7 @@ namespace fachaGym.Models
 
         public DateTime FechaRegistro { get; set; }
 
-        public Plan Plan_ { get; set; }
+        [AllowNull]
+        public Plan? Plan_ { get; set; }
     }
 }

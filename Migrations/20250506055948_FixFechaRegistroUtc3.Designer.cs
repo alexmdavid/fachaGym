@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using fachaGym.Data;
@@ -11,9 +12,11 @@ using fachaGym.Data;
 namespace fachaGym.Migrations
 {
     [DbContext(typeof(GymDbContext))]
-    partial class GymDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250506055948_FixFechaRegistroUtc3")]
+    partial class FixFechaRegistroUtc3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,15 +44,12 @@ namespace fachaGym.Migrations
                     b.Property<DateTime>("FechaRegistro")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int?>("IdPlan")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
-                    b.Property<int?>("Plan_Id")
+                    b.Property<int>("Plan_Id")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -163,7 +163,9 @@ namespace fachaGym.Migrations
                 {
                     b.HasOne("fachaGym.models.Plan", "Plan_")
                         .WithMany()
-                        .HasForeignKey("Plan_Id");
+                        .HasForeignKey("Plan_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Plan_");
                 });
