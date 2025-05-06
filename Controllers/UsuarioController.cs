@@ -37,7 +37,6 @@
             {
                 try
                 {
-                    usuario.FechaRegistro = usuario.FechaRegistro.UtcDateTime;
                     await _service.Crear(usuario);
                     return CreatedAtAction(nameof(GetById), new { id = usuario.Id }, usuario);
                 }
