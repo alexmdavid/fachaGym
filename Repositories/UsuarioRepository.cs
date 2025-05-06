@@ -28,7 +28,7 @@
 
             public async Task Crear(Usuario usuario)
             {
-                usuario.FechaRegistro = usuario.FechaRegistro.UtcDateTime;
+      
                 _context.Usuarios.Add(usuario);
                 await _context.SaveChangesAsync();
             }

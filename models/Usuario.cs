@@ -1,4 +1,5 @@
-﻿using System;
+﻿using fachaGym.models;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -22,8 +23,8 @@ namespace fachaGym.Models
         [MinLength(8)] 
         public string Contraseña { get; set; }
 
-        public DateTimeOffset FechaRegistro { get; set; }
+        public DateTime FechaRegistro { get; set; }
 
-          //joa por ejemplo 1 dia; 1 mes, serian 30 dias; 3 meses, 90 dias y asi nojoda
+        public Plan Plan_ { get; set; }
     }
 }
